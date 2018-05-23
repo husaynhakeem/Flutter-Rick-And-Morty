@@ -11,9 +11,10 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Rick and Morty'),
+          title: Text('Rick & Morty'),
         ),
         body: CharactersScreen(),
       ),
