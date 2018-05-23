@@ -6,10 +6,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
 import 'package:rick_and_morty/data/models.dart';
 
 const double _kFlingVelocity = 2.0;
+final String _defaultTitle = 'Character';
 
 class _BackdropPanel extends StatelessWidget {
   const _BackdropPanel({
@@ -160,7 +160,7 @@ class _BackdropState extends State<Backdrop>
             velocity:
             _backdropPanelVisible ? -_kFlingVelocity : _kFlingVelocity);
       });
-    } else if (!_backdropPanelVisible) {
+    } else if (!_backdropPanelVisible && widget.currentCharacter != null) {
       setState(() {
         _controller.fling(velocity: _kFlingVelocity);
       });
@@ -238,7 +238,8 @@ class _BackdropState extends State<Backdrop>
               onVerticalDragUpdate: _handleDragUpdate,
               onVerticalDragEnd: _handleDragEnd,
               title: Text(
-                  widget.currentCharacter == null ? '' : widget.currentCharacter
+                  widget.currentCharacter == null ? _defaultTitle : widget
+                      .currentCharacter
                       .name),
               child: widget.frontPanel,
             ),

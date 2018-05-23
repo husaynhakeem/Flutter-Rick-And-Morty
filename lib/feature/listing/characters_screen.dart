@@ -8,7 +8,7 @@ import 'backdrop.dart';
 
 import 'character_item.dart';
 
-final _charactersGridViewMargin = 4.0;
+final _charactersGridViewMargin = 48.0;
 final _charactersGridViewSpanCountPortrait = 2;
 final _charactersGridViewSpanCountLandscape = 4;
 
@@ -78,7 +78,7 @@ class CharactersState extends State<CharactersScreen> {
 
   Widget _buildForLoadedState() {
     return Padding(
-      padding: EdgeInsets.all(_charactersGridViewMargin),
+      padding: EdgeInsets.only(bottom: _charactersGridViewMargin),
       child: GridView.count(
         crossAxisCount: _getCharactersGridViewSpanCount(),
         children: _characters.map((character) =>
