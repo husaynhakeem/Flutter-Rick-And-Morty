@@ -3,12 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/data/characters_api.dart';
 import 'package:rick_and_morty/data/models.dart';
+import 'package:rick_and_morty/feature/detail/character_details.dart';
+import 'backdrop.dart';
 
 import 'character_item.dart';
 
 final _charactersGridViewMargin = 4.0;
 final _charactersGridViewSpanCountPortrait = 2;
 final _charactersGridViewSpanCountLandscape = 4;
+
+final _frontTitle = 'Character';
+final _backTitle = 'Rick & Morty';
 
 class CharactersScreen extends StatefulWidget {
 
@@ -19,6 +24,7 @@ class CharactersScreen extends StatefulWidget {
 class CharactersState extends State<CharactersScreen> {
 
   final _characters = <Character>[];
+  Character _currentCharacter;
 
   @override
   void didChangeDependencies() async {
@@ -36,8 +42,27 @@ class CharactersState extends State<CharactersScreen> {
     });
   }
 
+  void _onCharacterTapped(Character character) {
+    setState(() {
+      _currentCharacter = character;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    return Backdrop(
+      frontTitle: Text(_frontTitle),
+      backTitle: Text(_backTitle),
+      currentCharacter: _currentCharacter,
+      backPanel: _buildBackPanel(),
+      frontPanel: _buildFrontPanel(),);
+  }
+
+  Widget _buildFrontPanel() {
+    return CharacterDetailsScreen(_currentCharacter);
+  }
+
+  Widget _buildBackPanel() {
     if (_characters.isEmpty) {
       return _buildForLoadingState();
     } else {
@@ -57,7 +82,7 @@ class CharactersState extends State<CharactersScreen> {
       child: GridView.count(
         crossAxisCount: _getCharactersGridViewSpanCount(),
         children: _characters.map((character) =>
-            CharacterItem(character.name, character.image)).toList(),
+            CharacterItem(character, _onCharacterTapped)).toList(),
       ),
     );
   }

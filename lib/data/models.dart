@@ -12,23 +12,16 @@ class Character {
 
   Character.fromJson(Map jsonMap)
       : id = jsonMap['id'],
-        name = jsonMap['name'],
-        status = jsonMap['status'],
-        species = jsonMap['species'],
-        type = jsonMap['type'],
-        gender = jsonMap['gender'],
+        name = valueOrDefaultValue(jsonMap['name']),
+        status = valueOrDefaultValue(jsonMap['status']),
+        species = valueOrDefaultValue(jsonMap['species']),
+        type = valueOrDefaultValue(jsonMap['type']),
+        gender = valueOrDefaultValue(jsonMap['gender']),
         origin = Origin.fromJson(jsonMap['origin']),
         location = Location.fromJson(jsonMap['location']),
-        image = jsonMap['image'],
-        assert(id != null),
-        assert(name != null),
-        assert(status != null),
-        assert(species != null),
-        assert(type != null),
-        assert(gender != null),
-        assert(origin != null),
-        assert(location != null),
-        assert(image != null);
+        image = valueOrDefaultValue(jsonMap['image']),
+        assert (origin != null),
+        assert (location != null);
 }
 
 class Origin {
@@ -36,8 +29,7 @@ class Origin {
   final String name;
 
   Origin.fromJson(Map jsonMap)
-      : name = jsonMap['name'],
-        assert(name != null);
+      : name = valueOrDefaultValue(jsonMap['name']);
 }
 
 class Location {
@@ -45,6 +37,9 @@ class Location {
   final String name;
 
   Location.fromJson(Map jsonMap)
-      : name = jsonMap['name'],
-        assert(name != null);
+      : name = valueOrDefaultValue(jsonMap['name']);
+}
+
+String valueOrDefaultValue(String value) {
+  return (value == null || value.isEmpty) ? "-" : value;
 }

@@ -13,9 +13,6 @@ class HomeWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Rick & Morty'),
-        ),
         body: CharactersScreen(),
       ),
     );
