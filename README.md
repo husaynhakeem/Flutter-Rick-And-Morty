@@ -3,7 +3,7 @@
 This is a Flutter application about Rick and Morty characters built in order to practice the basics of Flutter and Dart. It used the public [Rick and Morty API](https://rickandmortyapi.com/).
 
 
-## What did I learn?
+## What I learned?
 - [Fetching data from the internet](https://flutter.io/cookbook/networking/fetch-data/)
 - [Running asynchronous operations](https://www.dartlang.org/tutorials/language/futures)
 - Displaying actionable and contextual data using a [backdrop](https://material.io/design/components/backdrop.html)
